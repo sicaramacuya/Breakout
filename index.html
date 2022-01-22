@@ -28,6 +28,9 @@
     let brickPadding = 10;
     let brickOffsetTop = 30;
     let brickOffsetLeft = 30;
+    let backGroundColor = ["Teal", "GreenYellow", "LightSalmon", "Teal", "GreenYellow", "LightSalmon"];
+    let columnBrickColor = ["LightGreen", "Coral", "Crimson", "DeepSkyBlue", "Gold"]
+    let backgroundColorRectWidth = canvas.width / 6
     
     var x = canvas.width / 2;
     var y = canvas.height - 30;
@@ -110,7 +113,7 @@
     function drawBall() {
         ctx.beginPath();
         ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "Red";
         ctx.fill();
         ctx.closePath();
     }
@@ -133,7 +136,7 @@
                     bricks[c][r].y = brickY;
                     ctx.beginPath();
                     ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                    ctx.fillStyle = "#0095DD";
+                    ctx.fillStyle = columnBrickColor[c];
                     ctx.fill();
                     ctx.closePath();
                 }
@@ -141,8 +144,34 @@
         }
     }
 
+    function drawBackground() {
+        ctx.beginPath();
+        for (var c=0; c < 6; c++) {
+            ctx.rect(backgroundColorRectWidth * c, 0, backgroundColorRectWidth, canvas.height)
+            switch (c) {
+                case 0:
+                    ctx.fillStyle = "Teal";
+                case 1:
+                    ctx.fillStyle = "GreenYellow";
+                case 2: 
+                    ctx.fillStyle = "LightSalmon";
+                case 3: 
+                    ctx.fillStyle = "Teal";
+                case 4: 
+                    ctx.fillStyle = "GreenYellow";
+                case 5:
+                    ctx.fillStyle = "Pink";
+                default:
+                    break
+            }
+        }
+        ctx.fill();
+        ctx.closePath();
+    }
+
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBackground();
         drawBricks();
         drawBall();
         drawPaddle();
@@ -194,7 +223,6 @@
 
         requestAnimationFrame(draw)
     }
-
 
     draw()
 
