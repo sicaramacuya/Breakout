@@ -144,34 +144,8 @@
         }
     }
 
-    function drawBackground() {
-        ctx.beginPath();
-        for (var c=0; c < 6; c++) {
-            ctx.rect(backgroundColorRectWidth * c, 0, backgroundColorRectWidth, canvas.height)
-            switch (c) {
-                case 0:
-                    ctx.fillStyle = "Teal";
-                case 1:
-                    ctx.fillStyle = "GreenYellow";
-                case 2: 
-                    ctx.fillStyle = "LightSalmon";
-                case 3: 
-                    ctx.fillStyle = "Teal";
-                case 4: 
-                    ctx.fillStyle = "GreenYellow";
-                case 5:
-                    ctx.fillStyle = "Pink";
-                default:
-                    break
-            }
-        }
-        ctx.fill();
-        ctx.closePath();
-    }
-
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawBackground();
         drawBricks();
         drawBall();
         drawPaddle();
