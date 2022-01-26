@@ -1,5 +1,4 @@
 /* global document, alert, requestAnimationFrame */
-/* 
 
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
@@ -187,6 +186,4 @@ function draw() {
     requestAnimationFrame(draw)
 }
 
-// draw()
-
- */
+draw()
