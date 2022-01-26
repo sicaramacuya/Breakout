@@ -1,5 +1,4 @@
 /* global document, alert, requestAnimationFrame */
-/* 
 
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
@@ -115,7 +114,7 @@ function drawPaddle() {
 }
 
 function drawBricks() {
-    for (let c=0; c < brickColumnCount; c + 1) {
+    for (let c=0; c < brickColumnCount; c += 1) {
         for (let r=0; r < brickRowCount; r += 1) {
             if (bricks[c][r].status === 1) {
                 const brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
@@ -187,6 +186,4 @@ function draw() {
     requestAnimationFrame(draw)
 }
 
-// draw()
-
- */
+draw()
