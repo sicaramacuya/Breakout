@@ -1,14 +1,16 @@
 /* global document, alert, requestAnimationFrame */
 
-import Paddle from './Classes/Paddle.js'
-import Ball from './Classes/Ball.js'
-import Tiles from './Classes/Tiles.js'
+import Paddle from './Classes/Paddle.js';
+import Ball from './Classes/Ball.js';
+import Tiles from './Classes/Tiles.js';
+import Background from './Classes/Background.js';
 
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const tiles = new Tiles()
 const paddle = new Paddle();
 const ball = new Ball(canvas.width / 2, canvas.height - 30);
+const background = new Background(canvas.width, canvas.height, "aqua")
 
 let rightPressed = false;
 let leftPressed = false;
@@ -93,8 +95,13 @@ function drawBricks() {
     tiles.render(ctx)
 }
 
+function drawBackground() {
+    background.render(ctx)
+}
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBackground();
     drawBricks();
     drawBall();
     drawPaddle();
