@@ -4,6 +4,9 @@ import Paddle from './Classes/Paddle.js';
 import Ball from './Classes/Ball.js';
 import Tiles from './Classes/Tiles.js';
 import Background from './Classes/Background.js';
+import Score from './Classes/Score.js';
+import Lives from './Classes/Lives.js';
+
 
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
@@ -11,11 +14,12 @@ const tiles = new Tiles()
 const paddle = new Paddle();
 const ball = new Ball(canvas.width / 2, canvas.height - 30);
 const background = new Background(canvas.width, canvas.height, "aqua")
+const score = new Score()
+const lives = new Lives(canvas.width - 65)
 
 let rightPressed = false;
 let leftPressed = false;
-let lives = 3;
-let score = 0;
+let updatedLives;
 
 function keyDownHandler(e) {
     if (e.key === "Right" || e.key === "ArrowRight") {
@@ -57,7 +61,7 @@ function collisionDetection() {
                 if(ball.x > brick.x && ball.x < brick.x + brick.width && ball.y > brick.y && ball.y < brick.y + brick.height) {
                     ball.dy *= -1;
                     brick.status = false;
-                    score += 1;
+                    score.update(1);
 
                     if (score === tiles.rows * tiles.columns) { 
                         // eslint-disable-next-line no-alert
@@ -71,15 +75,14 @@ function collisionDetection() {
 }
 
 function drawScore() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
-    ctx.fillText(`Score: ${score}`, 8, 20);
+    score.render(ctx)
 }
 
 function drawLives() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
-    ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
+    // ctx.font = "16px Arial";
+    // ctx.fillStyle = "#0095DD";
+    // ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
+    lives.render(ctx)
 }
 
 function drawBall() {
@@ -110,7 +113,8 @@ function draw() {
     collisionDetection();
 
     // calculate position and return the amount of live left acording to the position calculated.
-    lives = ball.calculateNextPosition(canvas, paddle, lives, rightPressed, leftPressed)
+    updatedLives = ball.calculateNextPosition(canvas, paddle, lives.count, rightPressed, leftPressed)
+    lives.upatedLife(updatedLives)
 
     ball.move()
 
