@@ -1,11 +1,11 @@
 /* global document, alert, requestAnimationFrame */
 
-import Paddle from './Classes/Paddle.js';
-import Ball from './Classes/Ball.js';
-import Tiles from './Classes/Tiles.js';
-import Background from './Classes/Background.js';
-import Score from './Classes/Score.js';
-import Lives from './Classes/Lives.js';
+import Paddle from './Paddle.js';
+import Ball from './Ball.js';
+import Tiles from './Tiles.js';
+import Background from './Background.js';
+import Score from './Score.js';
+import Lives from './Lives.js';
 
 
 const canvas = document.getElementById("myCanvas");
@@ -51,7 +51,6 @@ document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
 
 
-
 function collisionDetection() {
     for (let column = 0; column < tiles.columns; column += 1) {
         for (let row = 0; row < tiles.rows; row += 1) {
@@ -79,9 +78,6 @@ function drawScore() {
 }
 
 function drawLives() {
-    // ctx.font = "16px Arial";
-    // ctx.fillStyle = "#0095DD";
-    // ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
     lives.render(ctx)
 }
 
